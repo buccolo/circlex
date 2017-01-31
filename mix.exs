@@ -28,6 +28,8 @@ defmodule Circlex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:ex_cli, "~> 0.1.0"}]
+    [{:ex_cli, "~> 0.1.0"},
+    {:httpoison, "~> 0.10.0"},
+    {:poison, "~> 3.0"}]
   end
 end
