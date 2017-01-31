@@ -1,31 +1,37 @@
 defmodule Circlex.CLI do
-  use ExCLI.DSL, escript: true
+  use ExCLI.DSL, escript: true, mix_task: :circlex
 
   name "circlex"
-  description "My CLI"
-  long_description ~s"""
-  This is my long description
-  """
+  description "Monitors CircleCI build status"
 
-  option :verbose, count: true, aliases: [:v]
+  command :check do
+    description "Checks build status"
 
-  command :hello do
-    description "Greets the user"
-    long_description """
-    Gives a nice a warm greeting to whoever would listen
-    """
-
-    argument :name
-    option :from, help: "the sender of hello"
+    argument :repo, help: "organization/repository the project belongs to"
+    argument :branch, help: "branch to check status of"
 
     run context do
-      if context.verbose > 0 do
-        IO.puts("Running hello command")
+
+      repo = context.repo
+      token = System.get_env("CIRCLECI_TOKEN")
+      url = "https://circleci.com/api/v1.1/project/github/" <> repo <> "/tree/" <> context.branch <> "?circle-token=" <> token <> "&limit=1"
+
+      HTTPoison.start
+      case HTTPoison.get(url, %{Accept: "application/json"}) do
+        {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+          decode(body)
+        {:ok, %HTTPoison.Response{status_code: 404}} ->
+          IO.puts "Not found :("
+        {:error, %HTTPoison.Error{reason: reason}} ->
+          IO.inspect reason
       end
-      if from = context[:from] do
-        IO.write("#{from} says: ")
-      end
-      IO.puts("Hello #{context.name}!")
     end
+  end
+
+  defp decode(response) do
+    [%{"outcome" => outcome, "status" => status}] = Poison.Parser.parse!(response)
+
+    IO.puts "Status: " <> status
+    IO.puts "Outcome: " <> outcome
   end
 end
