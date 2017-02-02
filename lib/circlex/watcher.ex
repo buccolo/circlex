@@ -8,7 +8,7 @@ defmodule Circlex.Watcher do
       Circlex.Notifier.idle()
     end
 
-    :timer.sleep(1000)
+    :timer.sleep(5000)
     watch(repo, branch, status)
   end
 end
