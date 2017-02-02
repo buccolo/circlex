@@ -2,7 +2,7 @@
 
 ## Installation
 
-Download and compile circlex via mix. You might need to update your Elxir to 1.4+
+Download and compile via mix. (You might need to update your Elixir to 1.4+)
 
 ```
 mix escript.install github buccolo/circlex
@@ -12,6 +12,19 @@ mix escript.install github buccolo/circlex
 
 Make sure you have `~/.mix/escripts` in your $PATH.
 
+### Check
+
+Returns the current status of a project in the given branch.
+
 ```
-circlex check organization/project branch
+$ circlex check organization/project branch
+fixed
+```
+
+### Watch
+
+Monitors the build and notifies when the status change.
+
+```
+$ circlex watch organization/project branch
 ```
