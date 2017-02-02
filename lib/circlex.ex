@@ -11,27 +11,19 @@ defmodule Circlex.CLI do
     argument :branch, help: "branch to check status of"
 
     run context do
-
-      repo = context.repo
-      token = System.get_env("CIRCLECI_TOKEN")
-      url = "https://circleci.com/api/v1.1/project/github/" <> repo <> "/tree/" <> context.branch <> "?circle-token=" <> token <> "&limit=1"
-
-      HTTPoison.start
-      case HTTPoison.get(url, %{Accept: "application/json"}) do
-        {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-          decode(body)
-        {:ok, %HTTPoison.Response{status_code: 404}} ->
-          IO.puts "Not found :("
-        {:error, %HTTPoison.Error{reason: reason}} ->
-          IO.inspect reason
-      end
+      {:ok, status } = Circlex.Checker.check(context.repo, context.branch)
+      IO.puts(status)
     end
   end
 
-  defp decode(response) do
-    [%{"outcome" => outcome, "status" => status}] = Poison.Parser.parse!(response)
+  command :watch do
+    description "Monitors build status"
 
-    IO.puts "Status: " <> status
-    IO.puts "Outcome: " <> outcome
+    argument :repo, help: "organization/repository the project belongs to"
+    argument :branch, help: "branch to check status of"
+
+    run context do
+      Circlex.Watcher.watch(context.repo, context.branch)
+    end
   end
 end
