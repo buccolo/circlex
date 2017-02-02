@@ -3,7 +3,7 @@ defmodule Circlex.Watcher do
     {:ok, status } = Circlex.Checker.check(repo, branch)
 
     if previous_status != status do
-      Circlex.Notifier.status_change(previous_status, status)
+      Circlex.Notifier.status_change(repo, branch, previous_status, status)
     else
       Circlex.Notifier.idle()
     end

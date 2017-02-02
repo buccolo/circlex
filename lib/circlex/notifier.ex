@@ -1,9 +1,9 @@
 defmodule Circlex.Notifier do
-  def status_change("", initial_status) do
+  def status_change(repo, branch, "", initial_status) do
     notify("Build is " <> initial_status)
   end
 
-  def status_change(previous_status, status) do
+  def status_change(repo, branch, previous_status, status) do
     notify("Build is now " <> status <> ", previously it was " <> previous_status)
   end
 
