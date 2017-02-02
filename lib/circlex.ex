@@ -23,6 +23,7 @@ defmodule Circlex.CLI do
     argument :branch, help: "branch to check status of"
 
     run context do
+      IO.puts "Watching " <> context.repo <> " on branch " <> context.branch
       Circlex.Watcher.watch(context.repo, context.branch)
     end
   end

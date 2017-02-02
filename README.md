@@ -27,4 +27,10 @@ Monitors the build and notifies when the status change.
 
 ```
 $ circlex watch organization/project branch
+Watching organization/project on branch branch
+.
+.
+.
+.
+.
 ```
