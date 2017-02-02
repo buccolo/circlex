@@ -3,12 +3,13 @@ defmodule Circlex.Watcher do
     {:ok, status } = Circlex.Checker.check(repo, branch)
 
     if previous_status != status do
-      IO.puts previous_status <> " -> " <> status
+      Circlex.Notifier.status_change(previous_status, status)
     else
-      IO.puts "."
+      Circlex.Notifier.idle()
     end
 
     :timer.sleep(1000)
     watch(repo, branch, status)
   end
 end
+
