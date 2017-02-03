@@ -15,8 +15,9 @@ defmodule Circlex.Checker do
   end
 
   defp handle_response(body) do
-    [%{"status" => status}] = Poison.Parser.parse!(body)
-
-    {:ok, status}
+    case Poison.Parser.parse!(body) do
+      [%{"status" => status}] -> {:ok, status}
+      _ -> {:error, "Branch was not found" }
+    end
   end
 end
