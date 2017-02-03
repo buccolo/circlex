@@ -1,10 +1,8 @@
 defmodule Circlex.Checker do
   def check(repo, branch) do
-    token = System.get_env("CIRCLECI_TOKEN")
-    url = "https://circleci.com/api/v1.1/project/github/" <> repo <> "/tree/" <> branch <> "?circle-token=" <> token <> "&limit=1"
-
     HTTPoison.start
-    case HTTPoison.get(url, %{Accept: "application/json"}) do
+
+    case HTTPoison.get(url(repo, branch), %{Accept: "application/json"}) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         handle_response(body)
       {:ok, %HTTPoison.Response{status_code: 404}} ->
@@ -12,6 +10,14 @@ defmodule Circlex.Checker do
       {:error, %HTTPoison.Error{}} ->
         {:error, "Something weird just happened" }
     end
+  end
+
+  defp token do
+    Application.get_env(:circlex, :token) || throw "You need to set a CIRCLECI_TOKEN environment variable"
+  end
+
+  defp url(repo, branch) do
+    "https://circleci.com/api/v1.1/project/github/" <> repo <> "/tree/" <> branch <> "?circle-token=" <> token() <> "&limit=1"
   end
 
   defp handle_response(body) do
