@@ -12,6 +12,8 @@ mix escript.install github buccolo/circlex
 
 Make sure you have `~/.mix/escripts` in your $PATH.
 
+You also need to expose `CIRCLECI_TOKEN` environment variable. Create your own token on https://circleci.com/account/api
+
 ### Check
 
 Returns the current status of a project in the given branch.
