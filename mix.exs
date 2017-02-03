@@ -39,6 +39,6 @@ defmodule Circlex.Mixfile do
   defp package do
     [ licenses: ["MIT"],
       maintainers: ["Bruno Buccolo"],
-      links: ["https://github.com/buccolo/circlex"] ]
+      links: %{"GitHub" => "https://github.com/buccolo/circlex"} ]
   end
 end
