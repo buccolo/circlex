@@ -11,8 +11,8 @@ defmodule Circlex.CLI do
     argument :branch, help: "branch to check status of"
 
     run context do
-      {:ok, status } = Circlex.Checker.check(context.repo, context.branch)
-      IO.puts(status)
+      {_, message } = Circlex.Checker.check(context.repo, context.branch)
+      IO.puts(message)
     end
   end
 

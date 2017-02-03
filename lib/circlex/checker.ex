@@ -6,13 +6,17 @@ defmodule Circlex.Checker do
     HTTPoison.start
     case HTTPoison.get(url, %{Accept: "application/json"}) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        [%{"status" => status}] = Poison.Parser.parse!(body)
-
-        {:ok, status}
+        handle_response(body)
       {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts "Not found :("
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        IO.inspect reason
+        {:error, "Project was not found" }
+      {:error, %HTTPoison.Error{}} ->
+        {:error, "Something weird just happened" }
     end
+  end
+
+  defp handle_response(body) do
+    [%{"status" => status}] = Poison.Parser.parse!(body)
+
+    {:ok, status}
   end
 end
