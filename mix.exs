@@ -3,6 +3,8 @@ defmodule Circlex.Mixfile do
 
   def project do
     [app: :circlex,
+     description: "Monitors CircleCI builds",
+     package: package(),
      version: "0.1.0",
      elixir: "~> 1.3",
      escript: [main_module: Circlex.CLI],
@@ -30,6 +32,13 @@ defmodule Circlex.Mixfile do
   defp deps do
     [{:ex_cli, "~> 0.1.0"},
     {:httpoison, "~> 0.10.0"},
-    {:poison, "~> 3.0"}]
+    {:poison, "~> 3.0"},
+    {:ex_doc, ">= 0.0.0", only: :dev}]
+  end
+
+  defp package do
+    [ licenses: ["MIT"],
+      maintainers: ["Bruno Buccolo"],
+      links: ["https://github.com/buccolo/circlex"] ]
   end
 end
