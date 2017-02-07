@@ -4,9 +4,9 @@ defmodule Circlex.Watcher do
       {:ok, status } ->
 
         if previous_status != status do
-          Circlex.Notifier.status_change(repo, branch, previous_status, status)
+          Circlex.Notifier.AppleScript.status_change(repo, branch, previous_status, status)
         else
-          Circlex.Notifier.idle()
+          Circlex.Notifier.AppleScript.idle()
         end
 
         :timer.sleep(5000)

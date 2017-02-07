@@ -33,6 +33,7 @@ defmodule Circlex.Mixfile do
     [{:ex_cli, "~> 0.1.0"},
     {:httpoison, "~> 0.10.0"},
     {:poison, "~> 3.0"},
+    {:anybar, "~> 0.1.0"},
     {:ex_doc, ">= 0.0.0", only: :dev}]
   end
 
