@@ -9,9 +9,7 @@ defmodule Circlex.Notifier.AppleScript do
     notify(title(repo, branch), "Build is now " <> status <> ", previously it was " <> previous_status)
   end
 
-  def idle() do
-    IO.puts('.')
-  end
+  def idle(), do: nil
 
   defp title(repo, branch) do
     repo <> " @ " <> branch

@@ -19,11 +19,8 @@ defmodule Circlex.Notifier.AnyBar do
   }
 
   def status_change(_repo, _branch, _, status) do
-    IO.puts(status)
-    AnyBar.change(@status_to_color[status] || "exclamation", 1738)
+    AnyBar.change(@status_to_color[status] || "exclamation", @default_port)
   end
 
-  def idle() do
-    IO.puts('.')
-  end
+  def idle(), do: nil
 end
