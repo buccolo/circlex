@@ -2,14 +2,7 @@ defmodule Circlex.Checker do
   def check(repo, branch) do
     HTTPoison.start
 
-    case HTTPoison.get(url(repo, branch), %{Accept: "application/json"}) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        handle_response(body)
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        {:error, "Project was not found" }
-      {:error, %HTTPoison.Error{}} ->
-        {:error, "Something weird just happened" }
-    end
+    handle_response HTTPoison.get(url(repo, branch), %{Accept: "application/json"})
   end
 
   defp token do
@@ -20,10 +13,11 @@ defmodule Circlex.Checker do
     "https://circleci.com/api/v1.1/project/github/" <> repo <> "/tree/" <> branch <> "?circle-token=" <> token() <> "&limit=1"
   end
 
-  defp handle_response(body) do
-    case Poison.Parser.parse!(body) do
-      [%{"status" => status}] -> {:ok, status}
-      _ -> {:error, "Branch was not found" }
-    end
+  defp handle_response({:ok, %HTTPoison.Response{status_code: 404, body: _}}), do: {:error, "Project was not found" }
+  defp handle_response({:ok, %HTTPoison.Response{status_code: 200, body: body}}) do
+    parse_response Poison.Parser.parse!(body)
   end
+
+  defp parse_response([%{"status" => status}]), do: {:ok, status}
+  defp parse_response(_), do: {:error, "Branch was not found"}
 end
