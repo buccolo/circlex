@@ -1,7 +1,6 @@
 defmodule Circlex.Notifier.AnyBar do
   @behaviour Circlex.Notifier
 
-  @default_port 1738
   @status_to_color %{
     "fixed" => "green",
     "success" => "green",
@@ -19,7 +18,7 @@ defmodule Circlex.Notifier.AnyBar do
   }
 
   def status_change(_repo, _branch, _, status) do
-    AnyBar.change(@status_to_color[status] || "exclamation", @default_port)
+    AnyBar.change(@status_to_color[status] || "exclamation")
   end
 
   def idle(), do: nil

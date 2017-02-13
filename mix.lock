@@ -1,4 +1,4 @@
-%{"anybar": {:hex, :anybar, "0.1.0", "37eb3ce3bed07e9b44f26e51737cda52343fcef0eeb9b9d796b17b02d3acd23f", [:mix], []},
+%{"anybar": {:hex, :anybar, "0.3.0", "bac3f50a60d444406be4088b5c7673fa934095e1a5b3793d248d10a508c442c7", [:mix], []},
   "certifi": {:hex, :certifi, "0.7.0", "861a57f3808f7eb0c2d1802afeaae0fa5de813b0df0979153cbafcd853ababaf", [:rebar3], []},
   "earmark": {:hex, :earmark, "1.1.1", "433136b7f2e99cde88b745b3a0cfc3fbc81fe58b918a09b40fce7f00db4d8187", [:mix], []},
   "ex_cli": {:hex, :ex_cli, "0.1.0", "e387d277e972d60c14b9891ac007a43800b4e96b3fbcbfc94fb163fc721223b9", [:mix], []},
