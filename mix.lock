@@ -1,5 +1,7 @@
-%{"anybar": {:hex, :anybar, "0.3.0", "bac3f50a60d444406be4088b5c7673fa934095e1a5b3793d248d10a508c442c7", [:mix], []},
+%{"anybar": {:hex, :anybar, "0.4.0", "cfd2e067b22f76dace297793160a91b3f17e64fb092402026cb805c5c474761c", [:mix], []},
+  "bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], []},
   "certifi": {:hex, :certifi, "0.7.0", "861a57f3808f7eb0c2d1802afeaae0fa5de813b0df0979153cbafcd853ababaf", [:rebar3], []},
+  "credo": {:hex, :credo, "0.6.1", "a941e2591bd2bd2055dc92b810c174650b40b8290459c89a835af9d59ac4a5f8", [:mix], [{:bunt, "~> 0.2.0", [hex: :bunt, optional: false]}]},
   "earmark": {:hex, :earmark, "1.1.1", "433136b7f2e99cde88b745b3a0cfc3fbc81fe58b918a09b40fce7f00db4d8187", [:mix], []},
   "ex_cli": {:hex, :ex_cli, "0.1.0", "e387d277e972d60c14b9891ac007a43800b4e96b3fbcbfc94fb163fc721223b9", [:mix], []},
   "ex_doc": {:hex, :ex_doc, "0.14.5", "c0433c8117e948404d93ca69411dd575ec6be39b47802e81ca8d91017a0cf83c", [:mix], [{:earmark, "~> 1.0", [hex: :earmark, optional: false]}]},
