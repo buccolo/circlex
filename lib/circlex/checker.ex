@@ -9,7 +9,7 @@ defmodule Circlex.Checker do
   end
 
   defp token do
-    Application.get_env(:circlex, :token) || throw "You need to set a CIRCLECI_TOKEN environment variable"
+    System.get_env("CIRCLECI_TOKEN") || throw "You need to set a CIRCLECI_TOKEN environment variable"
   end
 
   defp url(repo, branch) do
