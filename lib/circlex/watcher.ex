@@ -1,7 +1,9 @@
 defmodule Circlex.Watcher do
+  alias Circlex.Checker
+
   @default_notifiers [Circlex.Notifier.Text, Circlex.Notifier.AppleScript, Circlex.Notifier.AnyBar]
   def watch(repo, branch, previous_status \\ "", notifiers \\ @default_notifiers) do
-    case Circlex.Checker.check(repo, branch) do
+    case Checker.check(repo, branch) do
       {:ok, status } ->
 
         if previous_status != status do

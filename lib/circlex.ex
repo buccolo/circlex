@@ -1,6 +1,9 @@
 defmodule Circlex.CLI do
   use ExCLI.DSL, escript: true, mix_task: :circlex
 
+  alias Circlex.Checker
+  alias Circlex.Watcher
+
   name "circlex"
   description "Monitors CircleCI build status"
 
@@ -11,7 +14,7 @@ defmodule Circlex.CLI do
     argument :branch, help: "branch to check status of"
 
     run context do
-      {_, message } = Circlex.Checker.check(context.repo, context.branch)
+      {_, message } = Checker.check(context.repo, context.branch)
       IO.puts(message)
     end
   end
@@ -23,7 +26,7 @@ defmodule Circlex.CLI do
     argument :branch, help: "branch to check status of"
 
     run context do
-      Circlex.Watcher.watch(context.repo, context.branch)
+      Watcher.watch(context.repo, context.branch)
     end
   end
 end
