@@ -5,7 +5,7 @@ defmodule Circlex.Mixfile do
     [app: :circlex,
      description: "Monitors CircleCI builds",
      package: package(),
-     version: "0.2.0",
+     version: "0.3.0",
      elixir: "~> 1.3",
      escript: [main_module: Circlex.CLI],
      build_embedded: Mix.env == :prod,
