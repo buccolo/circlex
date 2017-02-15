@@ -16,7 +16,7 @@ defmodule Circlex.Checker do
     "https://circleci.com/api/v1.1/project/github/" <> repo <> "/tree/" <> branch <> "?circle-token=" <> token() <> "&limit=1"
   end
 
-  defp handle_response({:ok, %Response{status_code: 404, body: _}}), do: {:error, "Project was not found" }
+  defp handle_response({:ok, %Response{status_code: 404, body: _}}), do: {:error, "Project was not found"}
   defp handle_response({:ok, %Response{status_code: 200, body: body}}) do
     parse_response Parser.parse!(body)
   end

@@ -4,7 +4,7 @@ defmodule Circlex.Watcher do
   @default_notifiers [Circlex.Notifier.Text, Circlex.Notifier.AppleScript, Circlex.Notifier.AnyBar]
   def watch(repo, branch, previous_status \\ "", notifiers \\ @default_notifiers) do
     case Checker.check(repo, branch) do
-      {:ok, status } ->
+      {:ok, status} ->
 
         if previous_status != status do
           Enum.map(notifiers, &(&1.status_change(repo, branch, previous_status, status)))
@@ -14,7 +14,7 @@ defmodule Circlex.Watcher do
 
         :timer.sleep(5000)
         watch(repo, branch, status, notifiers)
-      {_, message } ->
+      {_, message} ->
         IO.puts(message)
     end
   end
