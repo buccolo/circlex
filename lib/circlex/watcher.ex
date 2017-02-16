@@ -2,6 +2,8 @@ defmodule Circlex.Watcher do
   alias Circlex.Checker
 
   @default_notifiers [Circlex.Notifier.Text, Circlex.Notifier.AppleScript, Circlex.Notifier.AnyBar]
+
+  @spec watch(String.t, String.t, String.t, [atom]) :: any
   def watch(repo, branch, previous_status \\ "", notifiers \\ @default_notifiers) do
     case Checker.check(repo, branch) do
       {:ok, status} ->
@@ -19,4 +21,3 @@ defmodule Circlex.Watcher do
     end
   end
 end
-

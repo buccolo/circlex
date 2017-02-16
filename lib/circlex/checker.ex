@@ -2,6 +2,7 @@ defmodule Circlex.Checker do
   alias HTTPoison.Response
   alias Poison.Parser
 
+  @spec check(String.t, String.t) :: {:ok, String.t} | {:error, String.t}
   def check(repo, branch) do
     HTTPoison.start
 
