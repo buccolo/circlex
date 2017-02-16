@@ -1,6 +1,6 @@
 defmodule CirclexTest do
   use ExUnit.Case
-  doctest Circlex
+  doctest Circlex.CLI
 
   test "the truth" do
     assert 1 + 1 == 2

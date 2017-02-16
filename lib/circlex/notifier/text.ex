@@ -10,7 +10,5 @@ defmodule Circlex.Notifier.Text do
     IO.puts(repo <> " @ " <> branch <> ": Build is now " <> status <> ", previously it was " <> previous_status)
   end
 
-  def idle() do
-    IO.puts('.')
-  end
+  def idle, do: IO.puts('.')
 end

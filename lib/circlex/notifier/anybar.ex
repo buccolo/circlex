@@ -21,5 +21,5 @@ defmodule Circlex.Notifier.AnyBar do
     AnyBar.change(@status_to_color[status] || "exclamation")
   end
 
-  def idle(), do: nil
+  def idle, do: nil
 end
